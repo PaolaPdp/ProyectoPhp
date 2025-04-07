@@ -9,8 +9,7 @@ public function __construct($bd) {
     }
 
 public function consultas(){       
-    try {
-        
+    try {        
         if (!$this->bd) {
             throw new Exception("No hay conexión a la base de datos.");
         }                
@@ -21,7 +20,7 @@ public function consultas(){
 }
 
 public function listado(){    
-    $consulta = mysqli_query($this->bd, "SELECT * FROM clientes;");
+    $consulta = mysqli_query($this->bd, "SELECT * FROM producto;");
 
         if (!$consulta) {
             throw new Exception("Error en la consulta: " . mysqli_error($this->bd));

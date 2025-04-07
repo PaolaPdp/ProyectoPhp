@@ -21,10 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['listar'])) {
 
 
 if (mysqli_num_rows($listado) > 0 ) {
-    while ($cliente = mysqli_fetch_assoc($listado)) {
+    while ($producto = mysqli_fetch_assoc($listado)) {
         echo "<div>";
-        echo "<a>" . htmlspecialchars($cliente['nombre']) . "</a> ";
-        echo "<a>" . htmlspecialchars($cliente['apellido']) . "</a>";
+        echo "<a>" . htmlspecialchars($producto['nombre']) . "</a> ";
+        echo "<a>" . htmlspecialchars($producto['unidadMedida']) . "</a>";
+        echo "<a>" . htmlspecialchars($producto['CANTIDAD']) . "</a>";
+        echo "<a>" . htmlspecialchars($producto['precioCompra']) . "</a>";
+        echo "<a>" . htmlspecialchars($producto['precioVenta']) . "</a>";
+        echo "<a>" . htmlspecialchars($producto['detalles']) . "</a>";
         echo "</div>";
     }
     
