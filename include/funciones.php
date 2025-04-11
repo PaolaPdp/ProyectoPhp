@@ -28,6 +28,15 @@ public function listado(){
         return $consulta;
 }
 
+public function registrado(){
+    $register = mysqli_query($this->bd, "INSERT INTO producto (nombre, unidadMedida, CANTIDAD, precioCompra, precioVenta, detalles) VALUES ('$_POST[nombre]', '$_POST[unidadMedida]', '$_POST[CANTIDAD]', '$_POST[precioCompra]', '$_POST[precioVenta]', '$_POST[detalles]');");
+    if (!$register) {
+        throw new Exception("Error al registrar el producto: " . mysqli_error($this->bd));
+    } else {
+        echo "<p>Producto registrado correctamente.</p>";
+    }
+}
+
 }
 
 ?>
