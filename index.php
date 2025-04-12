@@ -8,6 +8,9 @@ require_once 'include/bd.php';
 $fun = new funciones($bd); // Pasamos la conexió
 $listar = $_POST['listar'] ?? null;
 
+$reg = new funciones($bd); // Pasamos la conexión a la clase funciones
+$registrar = $_POST['registrar'] ?? null;
+
 
 // Clase crud, por si se necesita más adelante
 class crud {
@@ -21,7 +24,7 @@ public function listarr($fun){
     // Ejecuta la consulta si se hizo clic en "Listar Clientes"
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['listar'])) {
     // Ejecutar la consulta  
-    $consulta = $fun->consultas();
+    //$consulta = $fun->consultas();
     $listado = $fun->listado();
 
     if (!$listado) {
@@ -48,19 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['listar'])) {
     mysqli_close($this->bd);
 }
 }
-public function registrar($fun){
+public function registrar($reg){
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar'])) {
+        echo("se registro....");
         // Ejecutar la consulta de registro
-        $reg=$fun->register();
-        $registrar=$fun->registrado();
-    } else {
-        echo "<p>Error al registrar el producto.</p>";
+        $consulta=$reg->consultas(); 
+        $registrar=$reg->registrado();
     }
+    // } else {
+    //     echo "<p>Error al registrar el producto.</p>";
+    // }
     
 }
 
 }
 $crud = new crud($bd);
 $crud->listarr($fun);
+$crud->registrar($reg);
 
 ?>
