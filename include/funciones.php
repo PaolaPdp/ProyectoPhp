@@ -1,4 +1,3 @@
-
 <?php
 
 class funciones{
@@ -42,7 +41,10 @@ public function registrado(){
     } else {
         echo "<p>Producto registrado correctamente.</p>";
     }
+
+    
 }
+
 
 }
 

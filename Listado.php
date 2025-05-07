@@ -1,25 +1,8 @@
 <?php
     require_once 'include/funciones.php';
     require_once 'include/bd.php';
-    $fun = new funciones($bd); // Pasamos la conexió
-    $listar = $_POST['listar'] ?? null;
-    $reg = new funciones($bd);
-    $registrar = $_POST['registrar'] ?? null;
+    $fun = new funciones($bd); // Pasamos la conexió  
     $listado = $fun->listado();
-
-    function registrar($reg){
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar'])) {
-            echo("se registro....");
-            // Ejecutar la consulta de registro
-            $consulta=$reg->consultas(); 
-            $registrar=$reg->registrado();
-        }
-        // } else {
-        //     echo "<p>Error al registrar el producto.</p>";
-        // }
-        
-    }
-    registrar($reg);
 
 ?>
 
@@ -38,7 +21,6 @@
 
 <body class="d-flex flex-column h-100">
 
-    <!-- Begin page content -->
     <main class="flex-shrink-0">
         <div class="container">
             <h3 class="my-3" id="titulo">PROODUCTOS</h3>
@@ -58,8 +40,8 @@
                 </thead>                
 
                 <tbody>
-                <?php
-    if (mysqli_num_rows($listado) > 0) {
+    <?php
+    if (mysqli_num_rows($listado) >= 0) {
         while ($producto = mysqli_fetch_assoc($listado)) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($producto['id']) . "</td>";
@@ -77,7 +59,7 @@
     } else {
         echo "<tr><td colspan='7'>No hay productos disponibles.</td></tr>";
     }
-    ?>                   
+    ?>                 
 
                 </tbody>
             </table>
@@ -133,5 +115,9 @@
     </script>
 
 </body>
+
+<!-- ?php
+    mysqli_close($bd);
+?> -->
 
 </html>
