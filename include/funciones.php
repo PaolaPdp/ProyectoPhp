@@ -41,8 +41,17 @@ public function registrado(){
     } else {
         echo "<p>Producto registrado correctamente.</p>";
     }
-
     
+}
+
+public function eliminar($id){
+    $eliminar = mysqli_query($this->bd, "DELETE FROM producto WHERE id = '$id';");
+
+    if (!$eliminar) {
+        throw new Exception("Error al eliminar el producto: " . mysqli_error($this->bd));
+    } else {
+        echo "<p>Producto eliminado correctamente.</p>";
+    }
 }
 
 

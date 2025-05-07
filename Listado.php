@@ -52,7 +52,7 @@
             echo "<td>" . htmlspecialchars($producto['detalles']) . "</td>";
             echo "<td>
                     <a href='edita.html?id=" . $producto['id'] . "' class='btn btn-warning btn-sm me-2'>Editar</a>
-                    <button type='button' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#eliminaModal' data-bs-id='" . $producto['id'] . "'>Eliminar</button>
+                    <button type='button' name='eliminar' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#eliminaModal' data-bs-id='" . $producto['id'] . "'>Eliminar</button>
                 </td>";
             echo "</tr>";
         }
@@ -82,13 +82,17 @@
                 <div class="modal-body">
                     <p>¿Desea eliminar este registro?</p>
                 </div>
+
                 <div class="modal-footer">
-                    <form id="form-elimina" action="" method="post">
-                        <input type="hidden" name="_method" value="delete">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
-                </div>
+    <form id="form-elimina" action="" method="post">
+        <input type="hidden" name="id" id="elimina-id">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" name="eliminar" class="btn btn-danger">Eliminar</button>
+    </form>
+</div>
+
+
+
             </div>
         </div>
     </div>
@@ -99,19 +103,19 @@
 
     <script>
 
-        const eliminaModal = document.getElementById('eliminaModal')
-        if (eliminaModal) {
-            eliminaModal.addEventListener('show.bs.modal', event => {
-                // Button that triggered the modal
-                const button = event.relatedTarget
-                // Extract info from data-bs-* attributes
-                const id = button.getAttribute('data-bs-id')
+const eliminaModal = document.getElementById('eliminaModal')
+if (eliminaModal) {
+    eliminaModal.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+        const id = button.getAttribute('data-bs-id')
+        
+        const inputId = eliminaModal.querySelector('#elimina-id')
+        inputId.value = id
 
-                // Update the modal's content.
-                const form = eliminaModal.querySelector('#form-elimina')
-                form.setAttribute('action', 'elimina.html?id=' + id)
-            })
-        }
+        const form = eliminaModal.querySelector('#form-elimina')
+        form.setAttribute('action', 'Eliminar.php')
+    })
+}
     </script>
 
 </body>
