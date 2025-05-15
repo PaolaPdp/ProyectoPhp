@@ -54,6 +54,21 @@ public function eliminar($id){
     }
 }
 
+public function obtenerProducto($id) {
+    $sql = "SELECT * FROM producto WHERE id = ?";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
+public function actualizarProducto($id, $nombre, $cantidad, $precioCompra, $precioVenta, $detalles) {
+    $sql = "UPDATE producto SET nombre = ?, CANTIDAD = ?, precioCompra = ?, precioVenta = ?, detalles = ? WHERE id = ?";
+    $stmt = $this->bd->prepare($sql);
+    $stmt->bind_param("siddsi", $nombre, $cantidad, $precioCompra, $precioVenta, $detalles, $id);
+    $stmt->execute();
+}
+
 
 }
 

@@ -51,7 +51,7 @@
             echo "<td>" . htmlspecialchars($producto['precioVenta']) . "</td>";
             echo "<td>" . htmlspecialchars($producto['detalles']) . "</td>";
             echo "<td>
-                    <a href='edita.html?id=" . $producto['id'] . "' class='btn btn-warning btn-sm me-2'>Editar</a>
+                    <a href='editar.php?id=" . $producto['id'] . "' class='btn btn-warning btn-sm me-2'>Editar</a>
                     <button type='button' name='eliminar' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#eliminaModal' data-bs-id='" . $producto['id'] . "'>Eliminar</button>
                 </td>";
             echo "</tr>";
